@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tim Griffin — Distributed Systems Engineer & Tech Lead. Resume.">
+    <title>Tim Griffin — Resume | Griffin & Gunn</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap');
+
+        *, *::before, *::after { box-sizing: border-box; }
+        body { font-family: 'Inter', system-ui, sans-serif; }
+        .hero-font { font-family: 'Playfair Display', serif; }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .monogram {
+            background: linear-gradient(135deg, #6d28d9, #9333ea);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, rgba(168,85,247,0.4), transparent);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 24px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 7px;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #a855f7;
+            border: 2px solid #4c1d95;
+        }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 3.5px;
+            top: 20px;
+            width: 2px;
+            height: calc(100% - 12px);
+            background: linear-gradient(to bottom, #5b21b6 0%, transparent 100%);
+        }
+        .timeline-item:last-child::after { display: none; }
+
+        .tech-badge {
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.2s ease;
+        }
+        .tech-badge:hover {
+            border-color: rgba(168,85,247,0.45);
+            background: rgba(168,85,247,0.1);
+            color: #d8b4fe;
+        }
+
+        @media print {
+            body { background: white !important; color: #111 !important; font-size: 11px; }
+            nav.no-print, .no-print { display: none !important; }
+            footer.no-print { display: none !important; }
+            .print-page { break-inside: avoid; }
+            h1, h2, h3 { color: #3b0764 !important; }
+            p, li, span, div { color: #374151 !important; }
+            .bg-zinc-950, .bg-zinc-900, .bg-zinc-800, .bg-zinc-800\/70 { background: #f9fafb !important; }
+            .border-white\/10, .border-white\/5 { border-color: #d1d5db !important; }
+            .text-zinc-300, .text-zinc-400, .text-zinc-500, .text-zinc-600 { color: #4b5563 !important; }
+            .text-purple-400, .text-purple-300 { color: #7c3aed !important; }
+            .gradient-text { background: none !important; -webkit-text-fill-color: #3b0764 !important; }
+            .monogram { background: #7c3aed !important; }
+            a { color: #7c3aed !important; text-decoration: none; }
+            .timeline-item::before { background: #7c3aed !important; }
+        }
+    </style>
+</head>
+<body class="bg-zinc-950 text-white min-h-screen">
+
+    <!-- Nav -->
+    <nav class="sticky top-0 z-50 bg-zinc-950/90 backdrop-blur-xl border-b border-white/10 no-print">
+        <div class="max-w-4xl mx-auto px-6 py-3.5 flex items-center justify-between">
+            <a href="index.html" class="text-zinc-400 hover:text-white transition-colors text-sm flex items-center gap-x-2">
+                <i class="fa-solid fa-arrow-left text-xs"></i> Griffin &amp; Gunn
+            </a>
+            <div class="flex items-center gap-x-3">
+                <a href="andrew-gunn.html" class="text-zinc-500 hover:text-zinc-300 transition-colors text-xs">Andrew's Resume &rarr;</a>
+                <button onclick="window.print()" class="text-zinc-400 hover:text-white transition-colors text-sm flex items-center gap-x-2 bg-white/5 hover:bg-white/10 px-4 py-2 rounded-lg">
+                    <i class="fa-solid fa-print text-xs"></i> Print / PDF
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-6 py-14">
+
+        <!-- Header -->
+        <header class="flex flex-col sm:flex-row items-start sm:items-center gap-x-7 gap-y-5 mb-14 print-page">
+            <div class="monogram w-20 h-20 rounded-2xl text-3xl text-white flex-shrink-0">TG</div>
+            <div class="flex-1">
+                <h1 class="hero-font text-5xl gradient-text leading-tight">Tim Griffin</h1>
+                <p class="text-zinc-400 mt-2 font-medium">Distributed Systems Engineer &middot; Tech Lead &middot; Platform Architect</p>
+                <div class="flex flex-wrap items-center gap-x-6 gap-y-2 mt-3 text-sm text-zinc-500">
+                    <a href="mailto:tim@timgriffin.dev" class="hover:text-purple-400 transition-colors flex items-center gap-x-1.5">
+                        <i class="fa-solid fa-envelope text-xs"></i> tim@timgriffin.dev
+                    </a>
+                    <a href="https://www.linkedin.com/in/tim-griffin-770ab6192" target="_blank" rel="noopener" class="hover:text-blue-400 transition-colors flex items-center gap-x-1.5">
+                        <i class="fa-brands fa-linkedin text-xs"></i> linkedin.com/in/tim-griffin-770ab6192
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Summary -->
+        <section class="mb-12 print-page">
+            <h2 class="text-xs font-semibold text-purple-400 uppercase tracking-widest mb-4 flex items-center gap-x-3">
+                <span>Summary</span><div class="section-divider flex-1"></div>
+            </h2>
+            <p class="text-zinc-300 leading-relaxed">
+                Software engineer with 6+ years building and modernizing enterprise .NET applications. Specializes in distributed systems, event-driven architectures, and microservices — the kind of infrastructure that has to work at scale, under pressure, and without downtime. Consistent pattern of end-to-end ownership across two companies: architecture, implementation, performance tuning, and production incident response. Carried tech-lead scope from day one.
+            </p>
+        </section>
+
+        <!-- Core Competencies -->
+        <section class="mb-12 print-page">
+            <h2 class="text-xs font-semibold text-purple-400 uppercase tracking-widest mb-5 flex items-center gap-x-3">
+                <span>Core Competencies</span><div class="section-divider flex-1"></div>
+            </h2>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-zinc-900 border border-white/10 rounded-xl p-5">
+                    <h3 class="font-semibold text-sm mb-2 text-purple-300">Distributed Systems Architecture</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed">Designs and builds systems that communicate reliably at scale. Toolkit includes event sourcing (Streamstone), CQRS, NServiceBus, MediatR, Azure Service Bus, and SignalR. Builds the shared infrastructure layers other engineers consume — NuGet-packaged client libraries and modular frontend consumer models.</p>
+                </div>
+                <div class="bg-zinc-900 border border-white/10 rounded-xl p-5">
+                    <h3 class="font-semibold text-sm mb-2 text-purple-300">Cloud Migration &amp; Modernization</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed">Led the full lifecycle: Azure App Services → Dockerized AWS EKS, WCF → Minimal APIs (first implementation at the company), Azure DevOps → GitLab CI/CD. Uses YARP reverse proxy for incremental, zero-downtime migration — the strangler fig pattern applied to real production traffic.</p>
+                </div>
+                <div class="bg-zinc-900 border border-white/10 rounded-xl p-5">
+                    <h3 class="font-semibold text-sm mb-2 text-purple-300">Performance Engineering</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed">Systematic root-cause analysis, not silver bullets. Most significant result: 523&times; improvement on a timing-out certification query. Fix involved replacing O(n²) lookups with <code class="text-purple-300 bg-zinc-800 px-1 rounded">.ToLookup()</code>, composite covering indexes, cross-service coordination, and Full-Text Search replacing LIKE matching.</p>
+                </div>
+                <div class="bg-zinc-900 border border-white/10 rounded-xl p-5">
+                    <h3 class="font-semibold text-sm mb-2 text-purple-300">Real-Time Platform Infrastructure</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed">Architected platform-wide real-time infrastructure from scratch at CPI: shared .NET NuGet package + React/TypeScript consumer on <code class="text-purple-300 bg-zinc-800 px-1 rounded">useSyncExternalStore</code>. Solved distributed exactly-once completion with Redis atomic operations. Documented three extension patterns for team use.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience -->
+        <section class="mb-12 print-page">
+            <h2 class="text-xs font-semibold text-purple-400 uppercase tracking-widest mb-7 flex items-center gap-x-3">
+                <span>Experience</span><div class="section-divider flex-1"></div>
+            </h2>
+            <div class="space-y-9">
+
+                <!-- CPI -->
+                <div class="timeline-item">
+                    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-y-0.5 mb-3">
+                        <div>
+                            <h3 class="font-semibold text-white">Software Engineer II / Tech Lead</h3>
+                            <p class="text-purple-300 text-sm font-medium">Crisis Prevention Institute &mdash; Milwaukee, WI</p>
+                        </div>
+                        <span class="text-xs text-zinc-500 font-mono shrink-0">Mar 2025 – Present</span>
+                    </div>
+                    <p class="text-xs text-zinc-500 mb-3 italic">World leader in de-escalation and crisis prevention training, serving 17M+ professionals across education, healthcare, and human services.</p>
+                    <ul class="space-y-1.5 text-sm text-zinc-300">
+                        <li class="flex items-start gap-x-2"><span class="text-purple-400 mt-0.5 flex-shrink-0">&middot;</span><span>Architected platform-wide real-time infrastructure from scratch — shared .NET NuGet package + modular React/TypeScript consumer on <code class="text-purple-300 bg-zinc-800 px-1 rounded text-xs">useSyncExternalStore</code> — solving distributed exactly-once completion with Redis atomic operations.</span></li>
+                        <li class="flex items-start gap-x-2"><span class="text-purple-400 mt-0.5 flex-shrink-0">&middot;</span><span>Major contributor to the Dashboard microservice: <strong class="text-white font-semibold">90+ production commits</strong> spanning query handlers, event handlers, caching, and auth. Shipped code across <strong class="text-white font-semibold">14 microservices in 13 months</strong>.</span></li>
+                        <li class="flex items-start gap-x-2"><span class="text-purple-400 mt-0.5 flex-shrink-0">&middot;</span><span>Drove a <strong class="text-white font-semibold">523&times; performance improvement</strong> on a timing-out certification query breaking features for users with large org trees.</span></li>
+                        <li class="flex items-start gap-x-2"><span class="text-purple-400 mt-0.5 flex-shrink-0">&middot;</span><span>Shipped RBAC across backend APIs by redesigning access-token handling with backward-compatible auth flow; configured Ping Identity for role-gated beta-testing rollouts.</span></li>
+                        <li class="flex items-start gap-x-2"><span class="text-purple-400 mt-0.5 flex-shrink-0">&middot;</span><span>Authored KQL queries used in production incident response, surfacing exception hotspots by file and type across Application Insights and Log Analytics.</span></li>
+                        <li class="flex items-start gap-x-2"><span class="text-purple-400 mt-0.5 flex-shrink-0">&middot;</span><span>Contributed to <strong class="text-white font-semibold">Project Golden Eye</strong> — company-wide initiative implementing agentic AI for engineers.</span></li>
+                    </ul>
+                </div>
+
+                <!-- Workstate / Paysafe -->
+                <div class="timeline-item">
+                    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-y-0.5 mb-3">
+                        <div>
+                            <h3 class="font-semibold text-white">Senior Software Engineer / Tech Lead</h3>
+                            <p class="text-purple-300 text-sm font-medium">Workstate (Client: Paysafe) &mdash; Columbus, OH</p>
+                        </div>
+                        <span class="text-xs text-zinc-500 font-mono shrink-0">Oct 2022 – Jan 2025</span>
+                    </div>
+                    <p class="text-xs text-zinc-500 mb-3 italic">Paysafe is a global payments platform. Workstate provided the engineering team for core platform modernization.</p>
+                    <ul class="space-y-1.5 text-sm text-zinc-300">
+                        <li class="flex items-start gap-x-2"><span class="text-purple-400 mt-0.5 flex-shrink-0">&middot;</span><span>Led a team of 4 on a microservices replatforming: migrated .NET apps from Azure App Services to <strong class="text-white font-semibold">Dockerized AWS EKS</strong>, transitioned CI/CD from Azure DevOps to GitLab, drove adoption of trunk-based development.</span></li>
+                        <li class="flex items-start gap-x-2"><span class="text-purple-400 mt-0.5 flex-shrink-0">&middot;</span><span>Spearheaded .NET modernization: the <strong class="text-white font-semibold">first WCF → Minimal APIs implementation at the company</strong>, using YARP reverse proxy for incremental, zero-downtime migration. No internal playbook — designed from scratch.</span></li>
+                        <li class="flex items-start gap-x-2"><span class="text-purple-400 mt-0.5 flex-shrink-0">&middot;</span><span>Designed and NuGet-packaged reusable API client libraries with <code class="text-purple-300 bg-zinc-800 px-1 rounded text-xs">IServiceCollection</code> extensions wrapping Refit clients, standardizing service integration across the platform.</span></li>
+                        <li class="flex items-start gap-x-2"><span class="text-purple-400 mt-0.5 flex-shrink-0">&middot;</span><span>Executed Zendesk → Salesforce migration under aggressive deadlines: replacement service implementations and custom data-migration console apps.</span></li>
+                    </ul>
+                </div>
+
+                <!-- Performance Foodservice -->
+                <div class="timeline-item">
+                    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-y-0.5 mb-3">
+                        <div>
+                            <h3 class="font-semibold text-white">Software Developer</h3>
+                            <p class="text-purple-300 text-sm font-medium">Performance Foodservice &mdash; La Crosse, WI</p>
+                        </div>
+                        <span class="text-xs text-zinc-500 font-mono shrink-0">Jan 2020 – Oct 2022</span>
+                    </div>
+                    <ul class="space-y-1.5 text-sm text-zinc-300">
+                        <li class="flex items-start gap-x-2"><span class="text-purple-400 mt-0.5 flex-shrink-0">&middot;</span><span>Built backend APIs for the CustomerFirst e-commerce platform serving <strong class="text-white font-semibold">300,000+ users</strong> (ASP.NET Web API, SQL Server, Azure).</span></li>
+                        <li class="flex items-start gap-x-2"><span class="text-purple-400 mt-0.5 flex-shrink-0">&middot;</span><span>Partnered with a Solutions Architect on a full-stack admin portal.</span></li>
+                        <li class="flex items-start gap-x-2"><span class="text-purple-400 mt-0.5 flex-shrink-0">&middot;</span><span>Presented technical specifications to leadership and business stakeholders.</span></li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Technical Skills -->
+        <section class="mb-12 print-page">
+            <h2 class="text-xs font-semibold text-purple-400 uppercase tracking-widest mb-5 flex items-center gap-x-3">
+                <span>Technical Skills</span><div class="section-divider flex-1"></div>
+            </h2>
+            <div class="space-y-3">
+                <div class="flex flex-wrap items-start gap-x-2 gap-y-2">
+                    <span class="text-xs text-zinc-500 w-28 shrink-0 mt-1">Backend</span>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">C#</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">.NET</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Minimal APIs</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Azure Functions</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">NServiceBus</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">MediatR</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">SignalR</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">YARP</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Event Sourcing (Streamstone)</span>
+                    </div>
+                </div>
+                <div class="flex flex-wrap items-start gap-x-2 gap-y-2">
+                    <span class="text-xs text-zinc-500 w-28 shrink-0 mt-1">Data</span>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">SQL Server</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Entity Framework</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Redis</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">AWS DocumentDB</span>
+                    </div>
+                </div>
+                <div class="flex flex-wrap items-start gap-x-2 gap-y-2">
+                    <span class="text-xs text-zinc-500 w-28 shrink-0 mt-1">Cloud</span>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Azure (APIM, App Insights, SignalR, Service Bus)</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">AWS EKS</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Docker</span>
+                    </div>
+                </div>
+                <div class="flex flex-wrap items-start gap-x-2 gap-y-2">
+                    <span class="text-xs text-zinc-500 w-28 shrink-0 mt-1">Frontend</span>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">React</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Redux / RTK Query</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">TypeScript</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">JavaScript</span>
+                    </div>
+                </div>
+                <div class="flex flex-wrap items-start gap-x-2 gap-y-2">
+                    <span class="text-xs text-zinc-500 w-28 shrink-0 mt-1">CI/CD</span>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Azure Pipelines</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">GitLab CI/CD</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">GitHub Actions</span>
+                    </div>
+                </div>
+                <div class="flex flex-wrap items-start gap-x-2 gap-y-2">
+                    <span class="text-xs text-zinc-500 w-28 shrink-0 mt-1">Architecture</span>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Microservices</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Event-Driven Architecture</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">CQRS</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Domain-Driven Design</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Trunk-Based Development</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Strangler Fig</span>
+                    </div>
+                </div>
+                <div class="flex flex-wrap items-start gap-x-2 gap-y-2">
+                    <span class="text-xs text-zinc-500 w-28 shrink-0 mt-1">Observability</span>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">KQL</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Application Insights</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Log Analytics</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Highlighted Work -->
+        <section class="mb-12 print-page">
+            <h2 class="text-xs font-semibold text-purple-400 uppercase tracking-widest mb-5 flex items-center gap-x-3">
+                <span>Highlighted Results</span><div class="section-divider flex-1"></div>
+            </h2>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-zinc-900 border border-white/10 rounded-xl p-5">
+                    <div class="flex items-start gap-x-3 mb-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/15 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-bolt text-emerald-400 text-sm"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-sm text-white">523&times; Query Performance</h3>
+                            <p class="text-xs text-zinc-500">CPI &middot; 2025</p>
+                        </div>
+                    </div>
+                    <p class="text-zinc-400 text-xs leading-relaxed">Systematic 5-layer optimization: O(n²) → <code class="text-emerald-300 bg-zinc-800 px-0.5 rounded">.ToLookup()</code>, composite covering indexes, cross-service coordination, Full-Text Search replacing LIKE. Timeouts → milliseconds. Zero API breaking changes.</p>
+                </div>
+
+                <div class="bg-zinc-900 border border-white/10 rounded-xl p-5">
+                    <div class="flex items-start gap-x-3 mb-3">
+                        <div class="w-10 h-10 rounded-xl bg-amber-500/15 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-tower-broadcast text-amber-400 text-sm"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-sm text-white">Real-Time Platform Infrastructure</h3>
+                            <p class="text-xs text-zinc-500">CPI &middot; 2025</p>
+                        </div>
+                    </div>
+                    <p class="text-zinc-400 text-xs leading-relaxed">Platform-wide SignalR infrastructure serving 14 microservices. Shared NuGet package + React consumer on <code class="text-amber-300 bg-zinc-800 px-0.5 rounded">useSyncExternalStore</code>. Redis exactly-once delivery. Three documented extension patterns for the team.</p>
+                </div>
+
+                <div class="bg-zinc-900 border border-white/10 rounded-xl p-5">
+                    <div class="flex items-start gap-x-3 mb-3">
+                        <div class="w-10 h-10 rounded-xl bg-rose-500/15 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-arrows-rotate text-rose-400 text-sm"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-sm text-white">WCF → Minimal APIs (Zero Downtime)</h3>
+                            <p class="text-xs text-zinc-500">Paysafe &middot; 2023–2024</p>
+                        </div>
+                    </div>
+                    <p class="text-zinc-400 text-xs leading-relaxed">First such migration at a global payments company. YARP strangler fig: one endpoint at a time, validate, roll back if needed. Simultaneously: Azure → AWS EKS, Azure DevOps → GitLab CI/CD, trunk-based development.</p>
+                </div>
+
+                <div class="bg-zinc-900 border border-white/10 rounded-xl p-5">
+                    <div class="flex items-start gap-x-3 mb-3">
+                        <div class="w-10 h-10 rounded-xl bg-purple-500/15 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-layer-group text-purple-400 text-sm"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-sm text-white">14 Microservices in 13 Months</h3>
+                            <p class="text-xs text-zinc-500">CPI &middot; 2025</p>
+                        </div>
+                    </div>
+                    <p class="text-zinc-400 text-xs leading-relaxed">90+ production commits across the Dashboard microservice and 13 additional services. Query handlers, event handlers, caching, auth, real-time, and RBAC — all with full ownership from architecture to deployment.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section class="print-page">
+            <h2 class="text-xs font-semibold text-purple-400 uppercase tracking-widest mb-5 flex items-center gap-x-3">
+                <span>Education</span><div class="section-divider flex-1"></div>
+            </h2>
+            <div class="space-y-4">
+                <div class="bg-zinc-900 border border-white/10 rounded-xl p-5">
+                    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-y-1">
+                        <div>
+                            <h3 class="font-semibold text-white">University of Wisconsin &ndash; La Crosse</h3>
+                            <p class="text-purple-300 text-sm">B.S. Computer Science &amp; Mathematics</p>
+                        </div>
+                        <span class="text-xs text-zinc-500 font-mono shrink-0">2020</span>
+                    </div>
+                </div>
+                <div class="bg-zinc-900 border border-white/10 rounded-xl p-5">
+                    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-y-1">
+                        <div>
+                            <h3 class="font-semibold text-white">Western Technical College</h3>
+                            <p class="text-purple-300 text-sm">A.A.S. Electronic &amp; Computer Engineering Technology</p>
+                        </div>
+                        <span class="text-xs text-zinc-500 font-mono shrink-0">2017</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="border-t border-white/10 mt-16 py-8 no-print">
+        <div class="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <a href="index.html" class="text-zinc-500 hover:text-white transition-colors text-sm flex items-center gap-x-2">
+                <i class="fa-solid fa-arrow-left text-xs"></i> Back to Griffin &amp; Gunn
+            </a>
+            <a href="andrew-gunn.html" class="text-zinc-500 hover:text-zinc-300 transition-colors text-sm">
+                Andrew Gunn's Resume &rarr;
+            </a>
+        </div>
+    </footer>
+
+</body>
+</html>
