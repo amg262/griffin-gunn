@@ -3,163 +3,917 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Griffin & Gunn — Two senior engineers delivering enterprise-grade AI-powered systems at startup speed.">
+    <meta name="description" content="Griffin & Gunn — Two senior engineers delivering enterprise-grade AI-powered systems at startup speed. Andrew Gunn & Tim Griffin.">
     <title>Griffin & Gunn | AI-Native Enterprise Engineering</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap');
-        body { font-family: 'Inter', system_ui, sans-serif; }
-        .hero-font { font-family: 'Playfair Display', sans-serif; }
-        .gradient-text { background: linear-gradient(90deg, #6366f1, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .nav-link { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .nav-link:hover { color: #6366f1; transform: translateY(-1px); }
-        .card-hover { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-        .card-hover:hover { transform: translateY(-8px); box-shadow: 0 25px 50px -12px rgb(99 102 241); }
-        .section-header { font-size: 2.75rem; line-height: 1.1; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap');
+
+        *, *::before, *::after { box-sizing: border-box; }
+        body { font-family: 'Inter', system-ui, sans-serif; }
+        .hero-font { font-family: 'Playfair Display', serif; }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .gradient-text-cool {
+            background: linear-gradient(90deg, #818cf8, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.2s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #6366f1, #a855f7);
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+        .nav-link:hover::after { width: 100%; }
+        .nav-link:hover { color: #a5b4fc; }
+
+        .card-hover {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -12px rgba(99, 102, 241, 0.3);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .stat-card {
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .stat-card:hover {
+            transform: scale(1.04);
+            box-shadow: 0 12px 30px -8px rgba(99, 102, 241, 0.25);
+        }
+
+        .tech-badge {
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .tech-badge:hover {
+            border-color: rgba(99, 102, 241, 0.5);
+            background: rgba(99, 102, 241, 0.12);
+            color: #a5b4fc;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .case-detail {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .case-detail.open { max-height: 1200px; }
+
+        #mobile-menu {
+            transition: max-height 0.3s ease, opacity 0.3s ease;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+        }
+        #mobile-menu.open { max-height: 420px; opacity: 1; }
+
+        .monogram {
+            background: linear-gradient(135deg, #4338ca, #7c3aed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(99,102,241,0.3), transparent);
+        }
+
+        .proof-card {
+            border-left: 3px solid;
+            transition: transform 0.25s ease, background 0.25s ease;
+        }
+        .proof-card:hover { transform: translateX(4px); }
+
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #09090b; }
+        ::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #6366f1; }
     </style>
 </head>
 <body class="bg-zinc-950 text-white overflow-x-hidden">
-    <!-- Navbar -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-zinc-950/80 backdrop-blur-lg border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-            <div class="flex items-center gap-x-3">
-                <span class="text-3xl">🦅</span>
-                <span class="font-semibold text-2xl tracking-tight">Griffin & Gunn</span>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-zinc-950/90 backdrop-blur-xl border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-center justify-between h-16">
+                <a href="#" class="flex items-center gap-x-2.5 group">
+                    <div class="monogram w-8 h-8 rounded-lg text-white text-xs font-bold">G&G</div>
+                    <span class="font-semibold text-lg tracking-tight group-hover:text-indigo-300 transition-colors">Griffin & Gunn</span>
+                </a>
+
+                <div class="hidden md:flex items-center gap-x-8 text-sm font-medium text-zinc-300">
+                    <a href="#thesis" class="nav-link">Thesis</a>
+                    <a href="#services" class="nav-link">Services</a>
+                    <a href="#work" class="nav-link">Work</a>
+                    <a href="#stack" class="nav-link">Stack</a>
+                    <a href="#team" class="nav-link">Team</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+
+                <a href="#contact" class="hidden md:flex px-5 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-full font-semibold text-sm transition-colors items-center gap-x-2">
+                    Get in touch
+                </a>
+
+                <button id="hamburger" class="md:hidden p-2 rounded-lg text-zinc-300 hover:text-white hover:bg-white/10 transition-colors" aria-label="Toggle menu">
+                    <i class="fa-solid fa-bars text-lg" id="hamburger-icon"></i>
+                </button>
             </div>
-            <div class="hidden md:flex items-center gap-x-8 text-sm font-medium">
-                <a href="#thesis" class="nav-link">Thesis</a>
-                <a href="#services" class="nav-link">Services</a>
-                <a href="#work" class="nav-link">Work</a>
-                <a href="#team" class="nav-link">Team</a>
-                <a href="#contact" class="nav-link">Contact</a>
+        </div>
+
+        <div id="mobile-menu" class="md:hidden border-t border-white/10 bg-zinc-950/95">
+            <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-y-1 text-sm font-medium text-zinc-300">
+                <a href="#thesis" class="mobile-link py-2.5 hover:text-white transition-colors">Thesis</a>
+                <a href="#services" class="mobile-link py-2.5 hover:text-white transition-colors">Services</a>
+                <a href="#work" class="mobile-link py-2.5 hover:text-white transition-colors">Work</a>
+                <a href="#stack" class="mobile-link py-2.5 hover:text-white transition-colors">Stack</a>
+                <a href="#team" class="mobile-link py-2.5 hover:text-white transition-colors">Team</a>
+                <a href="#contact" class="mobile-link py-2.5 hover:text-white transition-colors">Contact</a>
+                <a href="#contact" class="mt-3 px-5 py-3 bg-indigo-600 hover:bg-indigo-500 rounded-full font-semibold text-white text-center transition-colors mobile-link">Get in touch</a>
             </div>
-            <a href="#contact" class="px-6 py-2.5 bg-white text-zinc-900 rounded-3xl font-semibold text-sm hover:bg-indigo-100 transition-colors">Get in touch</a>
         </div>
     </nav>
 
-    <!-- Hero -->
-    <section class="min-h-screen flex items-center pt-20 bg-gradient-to-br from-zinc-950 to-zinc-900">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+    <!-- ===== HERO ===== -->
+    <section class="min-h-screen flex items-center pt-16 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950"></div>
+        <div class="absolute top-1/4 -left-72 w-[500px] h-[500px] bg-indigo-700/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-1/4 -right-40 w-96 h-96 bg-purple-700/12 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="relative max-w-7xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-16 items-center w-full">
             <div class="space-y-8">
-                <div class="inline-flex items-center gap-x-2 bg-white/10 text-white text-sm px-5 py-2 rounded-3xl backdrop-blur">
-                    <span class="relative flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span></span>
-                    AI-Native Engineering Partnership
+                <div class="inline-flex items-center gap-x-2.5 bg-white/8 text-white text-xs font-medium px-4 py-2 rounded-full backdrop-blur border border-white/15">
+                    <span class="relative flex h-2.5 w-2.5">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                    </span>
+                    Available for new projects &middot; Milwaukee, WI
                 </div>
-                <h1 class="hero-font text-7xl md:text-8xl leading-none tracking-tighter">Two senior engineers.<br>Enterprise results.<br>Startup speed.</h1>
-                <p class="text-3xl text-zinc-400 max-w-lg">AI-powered systems, real-time infrastructure, and modernization — delivered by Andrew Gunn & Tim Griffin.</p>
-                <div class="flex items-center gap-x-4">
-                    <a href="#work" class="px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-3xl font-semibold flex items-center gap-x-2 hover:shadow-2xl hover:shadow-indigo-500/30 transition-all">See our work <i class="fa-solid fa-arrow-right"></i></a>
-                    <a href="#contact" class="px-8 py-4 border border-white/30 hover:border-white/70 rounded-3xl font-medium transition-colors">Let's build together</a>
+
+                <h1 class="hero-font text-6xl lg:text-7xl xl:text-[5.5rem] leading-none tracking-tighter">
+                    Two engineers.<br>
+                    <span class="gradient-text">Enterprise results.</span><br>
+                    Startup speed.
+                </h1>
+
+                <p class="text-lg text-zinc-400 max-w-md leading-relaxed">
+                    We're Andrew Gunn and Tim Griffin — senior engineers who ship AI-powered systems, real-time infrastructure, and enterprise modernizations that actually make it to production.
+                </p>
+
+                <div class="flex flex-wrap items-center gap-3">
+                    <a href="#work" class="px-7 py-3.5 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full font-semibold flex items-center gap-x-2 hover:shadow-2xl hover:shadow-indigo-500/30 hover:scale-105 transition-all text-sm">
+                        See our work <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                    <a href="#contact" class="px-7 py-3.5 border border-white/20 hover:border-white/50 rounded-full font-medium transition-all text-sm text-zinc-300 hover:text-white">
+                        Let's build together
+                    </a>
                 </div>
             </div>
-            <div class="hidden md:flex justify-center">
-                <div class="bg-zinc-900/50 border border-white/10 rounded-3xl p-8 backdrop-blur-xl text-center max-w-xs">
-                    <div class="text-9xl mb-6">🦅⚡</div>
-                    <p class="text-zinc-400 text-xl">523× performance gains • 300K+ user platforms • Production AI workflows</p>
+
+            <!-- Stats grid -->
+            <div class="grid grid-cols-2 gap-4">
+                <div class="stat-card bg-zinc-900/80 border border-white/10 rounded-2xl p-6 backdrop-blur">
+                    <div class="text-4xl font-bold gradient-text-cool mb-1.5">523×</div>
+                    <div class="text-sm text-zinc-400">Performance gain in production</div>
+                </div>
+                <div class="stat-card bg-zinc-900/80 border border-white/10 rounded-2xl p-6 backdrop-blur">
+                    <div class="text-4xl font-bold gradient-text-cool mb-1.5">300K+</div>
+                    <div class="text-sm text-zinc-400">Users on platforms we've built</div>
+                </div>
+                <div class="stat-card bg-zinc-900/80 border border-white/10 rounded-2xl p-6 backdrop-blur">
+                    <div class="text-4xl font-bold gradient-text-cool mb-1.5">$1M+</div>
+                    <div class="text-sm text-zinc-400">Annual e-commerce revenue generated</div>
+                </div>
+                <div class="stat-card bg-zinc-900/80 border border-white/10 rounded-2xl p-6 backdrop-blur">
+                    <div class="text-4xl font-bold gradient-text-cool mb-1.5">108K+</div>
+                    <div class="text-sm text-zinc-400">Open-source plugin downloads</div>
+                </div>
+                <div class="stat-card bg-zinc-900/80 border border-white/10 rounded-2xl p-6 backdrop-blur">
+                    <div class="text-4xl font-bold gradient-text-cool mb-1.5">16+</div>
+                    <div class="text-sm text-zinc-400">Years combined enterprise experience</div>
+                </div>
+                <div class="stat-card bg-zinc-900/80 border border-white/10 rounded-2xl p-6 backdrop-blur">
+                    <div class="text-4xl font-bold gradient-text-cool mb-1.5">14</div>
+                    <div class="text-sm text-zinc-400">Microservices shipped in 13 months</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Thesis -->
-    <section id="thesis" class="py-24 bg-zinc-900">
+    <div class="section-divider"></div>
+
+    <!-- ===== THESIS ===== -->
+    <section id="thesis" class="py-24 bg-zinc-900/40">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="max-w-3xl mx-auto text-center">
-                <h2 class="section-header font-semibold tracking-tight mb-8 gradient-text">The AI-Native Thesis</h2>
-                <p class="text-xl text-zinc-300">AI broke the old equation: more engineers ≠ more output. Two senior, AI-fluent engineers who have shipped together in production can now deliver what used to require entire teams — faster, with higher quality, and complete ownership.</p>
-                <p class="mt-6 text-zinc-400">We've proven it building ML analytics, agentic workflows, real-time infrastructure, and enterprise modernizations inside real companies.</p>
+            <div class="max-w-3xl mx-auto text-center reveal">
+                <p class="text-indigo-400 font-medium text-xs uppercase tracking-widest mb-4">Our Thesis</p>
+                <h2 class="text-4xl md:text-5xl font-semibold tracking-tight mb-8 gradient-text-cool">AI broke the old equation.</h2>
+                <p class="text-xl text-zinc-300 leading-relaxed">
+                    More engineers no longer means more output. Two senior, AI-fluent engineers who've shipped together in production can now deliver what used to require entire departments — faster, at higher quality, with complete ownership.
+                </p>
+                <p class="mt-5 text-zinc-400 leading-relaxed">
+                    We're not writing strategy decks about AI transformation. We've built ML analytics platforms, agentic engineering workflows, and real-time distributed infrastructure inside real companies, on real deadlines, for real users. AI is how we work — not what we sell.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 mt-16">
+                <div class="proof-card border-indigo-500 bg-zinc-900 rounded-2xl p-6 reveal">
+                    <div class="w-10 h-10 rounded-xl bg-indigo-500/15 flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-brain text-indigo-400"></i>
+                    </div>
+                    <h3 class="font-semibold text-base mb-2">Orderly ML Platform</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed">Built from zero: RFM segmentation, churn prediction, and real-time BI dashboards across 1,250+ B2B accounts — live in production.</p>
+                </div>
+                <div class="proof-card border-purple-500 bg-zinc-900 rounded-2xl p-6 reveal">
+                    <div class="w-10 h-10 rounded-xl bg-purple-500/15 flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-robot text-purple-400"></i>
+                    </div>
+                    <h3 class="font-semibold text-base mb-2">Project Golden Eye</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed">Agentic AI engineering workflow deployed across a full enterprise team. Not a demo — a daily-use system accelerating real development.</p>
+                </div>
+                <div class="proof-card border-emerald-500 bg-zinc-900 rounded-2xl p-6 reveal">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500/15 flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-tower-broadcast text-emerald-400"></i>
+                    </div>
+                    <h3 class="font-semibold text-base mb-2">Real-Time Infrastructure</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed">Platform-wide SignalR + Redis infrastructure serving 14 microservices — shared NuGet packages, typed React hooks, exactly-once delivery.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Services -->
+    <div class="section-divider"></div>
+
+    <!-- ===== SERVICES ===== -->
     <section id="services" class="py-24">
         <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl font-semibold mb-12 text-center">What We Build</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-zinc-900 p-8 rounded-3xl card-hover">
-                    <i class="fa-solid fa-brain text-4xl mb-6 text-indigo-400"></i>
-                    <h3 class="text-2xl font-medium mb-3">AI-Powered Product Development</h3>
-                    <p class="text-zinc-400">ML models, agentic workflows, intelligent features, and AI data pipelines embedded in production .NET/React systems.</p>
+            <div class="text-center mb-16 reveal">
+                <p class="text-indigo-400 font-medium text-xs uppercase tracking-widest mb-4">What We Build</p>
+                <h2 class="text-4xl md:text-5xl font-semibold tracking-tight">Not a menu of services.<br class="hidden md:block"> A set of proven capabilities.</h2>
+                <p class="mt-5 text-zinc-400 max-w-2xl mx-auto">We don't write 60-page PDFs about your AI transformation journey. We build systems that work in production.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                <!-- AI Product Dev -->
+                <div class="bg-zinc-900 border border-white/10 p-8 rounded-2xl card-hover reveal">
+                    <div class="flex items-center gap-x-4 mb-5">
+                        <div class="w-11 h-11 rounded-xl bg-indigo-500/15 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-brain text-indigo-400"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold">AI-Powered Product Development</h3>
+                    </div>
+                    <p class="text-zinc-400 text-sm leading-relaxed mb-5">Real AI integration — not a text box calling the OpenAI API. ML models trained on your data, intelligent features embedded in your architecture, and agentic workflows with proper guardrails, cost management, and fallback behavior.</p>
+                    <p class="text-xs text-zinc-500 font-medium uppercase tracking-wider mb-3">What we've built</p>
+                    <div class="space-y-2">
+                        <div class="flex items-start gap-x-2 text-sm text-zinc-300"><i class="fa-solid fa-check text-indigo-400 mt-0.5 text-xs flex-shrink-0"></i><span>ML churn prediction across 1,250+ B2B accounts</span></div>
+                        <div class="flex items-start gap-x-2 text-sm text-zinc-300"><i class="fa-solid fa-check text-indigo-400 mt-0.5 text-xs flex-shrink-0"></i><span>RFM segmentation engine on real transaction data</span></div>
+                        <div class="flex items-start gap-x-2 text-sm text-zinc-300"><i class="fa-solid fa-check text-indigo-400 mt-0.5 text-xs flex-shrink-0"></i><span>AI-powered ETL pipelines in production .NET 8</span></div>
+                        <div class="flex items-start gap-x-2 text-sm text-zinc-300"><i class="fa-solid fa-check text-indigo-400 mt-0.5 text-xs flex-shrink-0"></i><span>Agentic coding workflow (Project Golden Eye) for an enterprise engineering team</span></div>
+                    </div>
                 </div>
-                <div class="bg-zinc-900 p-8 rounded-3xl card-hover">
-                    <i class="fa-solid fa-rocket text-4xl mb-6 text-purple-400"></i>
-                    <h3 class="text-2xl font-medium mb-3">Enterprise Modernization at AI Speed</h3>
-                    <p class="text-zinc-400">Legacy .NET upgrades (WCF → Minimal APIs, monolith → microservices) accelerated by AI tooling.</p>
+
+                <!-- Modernization -->
+                <div class="bg-zinc-900 border border-white/10 p-8 rounded-2xl card-hover reveal">
+                    <div class="flex items-center gap-x-4 mb-5">
+                        <div class="w-11 h-11 rounded-xl bg-purple-500/15 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-rocket text-purple-400"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold">Enterprise Modernization at AI Speed</h3>
+                    </div>
+                    <p class="text-zinc-400 text-sm leading-relaxed mb-5">Legacy .NET migrations accelerated 3–5× by our AI-augmented workflow. We've done the hard migrations — WCF → Minimal APIs, monolith → microservices, on-prem → cloud — and we document the playbook for your team.</p>
+                    <p class="text-xs text-zinc-500 font-medium uppercase tracking-wider mb-3">What we've built</p>
+                    <div class="space-y-2">
+                        <div class="flex items-start gap-x-2 text-sm text-zinc-300"><i class="fa-solid fa-check text-purple-400 mt-0.5 text-xs flex-shrink-0"></i><span>First WCF → Minimal APIs migration at Paysafe — zero downtime via YARP</span></div>
+                        <div class="flex items-start gap-x-2 text-sm text-zinc-300"><i class="fa-solid fa-check text-purple-400 mt-0.5 text-xs flex-shrink-0"></i><span>Azure App Services → Dockerized AWS EKS containerization</span></div>
+                        <div class="flex items-start gap-x-2 text-sm text-zinc-300"><i class="fa-solid fa-check text-purple-400 mt-0.5 text-xs flex-shrink-0"></i><span>Platform-wide SignalR real-time infrastructure from scratch</span></div>
+                        <div class="flex items-start gap-x-2 text-sm text-zinc-300"><i class="fa-solid fa-check text-purple-400 mt-0.5 text-xs flex-shrink-0"></i><span>Shared NuGet client libraries standardizing integration across 14+ services</span></div>
+                    </div>
                 </div>
-                <div class="bg-zinc-900 p-8 rounded-3xl card-hover">
-                    <i class="fa-solid fa-plug text-4xl mb-6 text-emerald-400"></i>
-                    <h3 class="text-2xl font-medium mb-3">Intelligent Integration</h3>
-                    <p class="text-zinc-400">Smart connections between CRM, ERP, commerce, identity, and payments with AI-driven transformation.</p>
+
+                <!-- Integration -->
+                <div class="bg-zinc-900 border border-white/10 p-8 rounded-2xl card-hover reveal">
+                    <div class="flex items-center gap-x-4 mb-5">
+                        <div class="w-11 h-11 rounded-xl bg-emerald-500/15 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-plug text-emerald-400"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold">Intelligent Integration</h3>
+                    </div>
+                    <p class="text-zinc-400 text-sm leading-relaxed mb-5">Not just plumbing — smart connections with AI-powered transformation, anomaly detection, and automated error recovery. We've integrated these specific enterprise systems in production, handling real transactions for real businesses.</p>
+                    <p class="text-xs text-zinc-500 font-medium uppercase tracking-wider mb-3">What we've connected</p>
+                    <div class="space-y-2">
+                        <div class="flex items-start gap-x-2 text-sm text-zinc-300"><i class="fa-solid fa-check text-emerald-400 mt-0.5 text-xs flex-shrink-0"></i><span>Dynamics 365 CRM ↔ Optimizely Commerce (bidirectional)</span></div>
+                        <div class="flex items-start gap-x-2 text-sm text-zinc-300"><i class="fa-solid fa-check text-emerald-400 mt-0.5 text-xs flex-shrink-0"></i><span>PingOne / Azure AD identity federation with RBAC</span></div>
+                        <div class="flex items-start gap-x-2 text-sm text-zinc-300"><i class="fa-solid fa-check text-emerald-400 mt-0.5 text-xs flex-shrink-0"></i><span>PayFabric/Cybersource payments (multi-currency US/CA, fraud detection)</span></div>
+                        <div class="flex items-start gap-x-2 text-sm text-zinc-300"><i class="fa-solid fa-check text-emerald-400 mt-0.5 text-xs flex-shrink-0"></i><span>Zendesk → Salesforce migration under hard deadlines</span></div>
+                    </div>
                 </div>
-                <div class="bg-zinc-900 p-8 rounded-3xl card-hover">
-                    <i class="fa-solid fa-chart-line text-4xl mb-6 text-amber-400"></i>
-                    <h3 class="text-2xl font-medium mb-3">Data-to-Intelligence</h3>
-                    <p class="text-zinc-400">ML analytics platforms, churn prediction, RFM segmentation, and real-time BI from raw enterprise data.</p>
+
+                <!-- Data to Intelligence -->
+                <div class="bg-zinc-900 border border-white/10 p-8 rounded-2xl card-hover reveal">
+                    <div class="flex items-center gap-x-4 mb-5">
+                        <div class="w-11 h-11 rounded-xl bg-amber-500/15 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-chart-line text-amber-400"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold">Data &rarr; Intelligence</h3>
+                    </div>
+                    <p class="text-zinc-400 text-sm leading-relaxed mb-5">You have years of data and zero analytics. We build ML-powered platforms that turn raw enterprise data into automated business intelligence — on your existing .NET/SQL Server/Azure stack, not a separate "data platform" requiring its own team.</p>
+                    <p class="text-xs text-zinc-500 font-medium uppercase tracking-wider mb-3">What we've built</p>
+                    <div class="space-y-2">
+                        <div class="flex items-start gap-x-2 text-sm text-zinc-300"><i class="fa-solid fa-check text-amber-400 mt-0.5 text-xs flex-shrink-0"></i><span>"Orderly" — zero to ML-powered churn prediction</span></div>
+                        <div class="flex items-start gap-x-2 text-sm text-zinc-300"><i class="fa-solid fa-check text-amber-400 mt-0.5 text-xs flex-shrink-0"></i><span>Real-time BI dashboards built for business users, not engineers</span></div>
+                        <div class="flex items-start gap-x-2 text-sm text-zinc-300"><i class="fa-solid fa-check text-amber-400 mt-0.5 text-xs flex-shrink-0"></i><span>Automated customer risk identification across 1,250+ accounts</span></div>
+                        <div class="flex items-start gap-x-2 text-sm text-zinc-300"><i class="fa-solid fa-check text-amber-400 mt-0.5 text-xs flex-shrink-0"></i><span>Cross-system pipelines with bulk processing and error recovery</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Engagement model -->
+            <div class="bg-gradient-to-r from-indigo-950/60 to-purple-950/60 border border-indigo-500/25 rounded-2xl p-8 reveal">
+                <div class="grid md:grid-cols-4 gap-8 items-start">
+                    <div>
+                        <p class="text-indigo-400 font-medium text-xs uppercase tracking-widest mb-3">How We Work</p>
+                        <h3 class="text-lg font-semibold text-white">Engagement Models</h3>
+                        <p class="text-zinc-400 text-sm mt-2">We own outcomes, not time sheets.</p>
+                    </div>
+                    <div>
+                        <div class="text-indigo-300 font-semibold mb-2 text-sm flex items-center gap-x-2"><i class="fa-solid fa-bullseye text-xs"></i> Fixed-Scope Builds</div>
+                        <p class="text-zinc-400 text-sm leading-relaxed">Defined outcome, timeline, price. We own the delivery end-to-end — no scope creep, no hourly billing.</p>
+                    </div>
+                    <div>
+                        <div class="text-purple-300 font-semibold mb-2 text-sm flex items-center gap-x-2"><i class="fa-solid fa-calendar-check text-xs"></i> Retained Capacity</div>
+                        <p class="text-zinc-400 text-sm leading-relaxed">Monthly commitment for ongoing .NET + AI development, optimization, and support. Senior capability on tap.</p>
+                    </div>
+                    <div>
+                        <div class="text-emerald-300 font-semibold mb-2 text-sm flex items-center gap-x-2"><i class="fa-solid fa-magnifying-glass text-xs"></i> Assessment + Roadmap</div>
+                        <p class="text-zinc-400 text-sm leading-relaxed">1–2 week engagement: evaluate your systems, identify AI integration opportunities, deliver a concrete plan. No fluff.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Work / Case Studies -->
-    <section id="work" class="py-24 bg-zinc-900">
+    <div class="section-divider"></div>
+
+    <!-- ===== WORK ===== -->
+    <section id="work" class="py-24 bg-zinc-900/40">
         <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl font-semibold mb-12 text-center">Selected Work</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-zinc-800 p-8 rounded-3xl card-hover">
-                    <span class="text-emerald-400 font-medium">PERFORMANCE • Tim Griffin @ CPI</span>
-                    <h3 class="text-2xl font-semibold mt-2">523× Query Performance Improvement</h3>
-                    <p class="text-zinc-400 mt-6">Systematic optimization across application, database, and cross-service layers for a critical certification query serving 300K+ users.</p>
-                    <a href="#" class="text-indigo-400 mt-6 inline-flex items-center gap-x-2 hover:text-indigo-300">Read full case study →</a>
+            <div class="text-center mb-16 reveal">
+                <p class="text-indigo-400 font-medium text-xs uppercase tracking-widest mb-4">Selected Work</p>
+                <h2 class="text-4xl md:text-5xl font-semibold tracking-tight">Five case studies.<br class="hidden md:block"> All production systems.</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Case 1: 523x -->
+                <div class="bg-zinc-900 border border-white/10 rounded-2xl overflow-hidden card-hover reveal">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-semibold text-emerald-400 bg-emerald-400/10 px-3 py-1 rounded-full">PERFORMANCE</span>
+                            <span class="text-xs text-zinc-500">Tim Griffin &nbsp;&bull;&nbsp; CPI</span>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">523&times; Query Performance Improvement</h3>
+                        <p class="text-zinc-400 text-sm leading-relaxed">Systematic optimization across application, database, and cross-service layers for a timing-out certification query serving 300K+ users with large org trees.</p>
+                        <button class="case-toggle mt-5 text-indigo-400 text-sm flex items-center gap-x-1.5 hover:text-indigo-300 transition-colors font-medium" data-target="case-1">
+                            Read case study <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                        </button>
+                    </div>
+                    <div class="case-detail" id="case-1">
+                        <div class="px-6 pb-6 pt-5 border-t border-white/10 space-y-4">
+                            <div>
+                                <p class="text-xs font-medium text-zinc-500 uppercase tracking-wider mb-2">Problem</p>
+                                <p class="text-sm text-zinc-300 leading-relaxed">Users with large organizational trees hit complete feature failures. The query powered certification status lookups across hierarchical structures with hundreds to thousands of nodes.</p>
+                            </div>
+                            <div>
+                                <p class="text-xs font-medium text-zinc-500 uppercase tracking-wider mb-2">Solution — 5 coordinated layers</p>
+                                <div class="space-y-1.5 text-sm text-zinc-300">
+                                    <div class="flex gap-x-2.5"><span class="text-emerald-400 font-mono text-xs mt-0.5 w-5 shrink-0">01</span><span>O(n²) in-memory loops replaced with <code class="text-emerald-300 bg-zinc-800 px-1 rounded">.ToLookup()</code> — eliminated quadratic growth</span></div>
+                                    <div class="flex gap-x-2.5"><span class="text-emerald-400 font-mono text-xs mt-0.5 w-5 shrink-0">02</span><span>Composite covering indexes on the primary query</span></div>
+                                    <div class="flex gap-x-2.5"><span class="text-emerald-400 font-mono text-xs mt-0.5 w-5 shrink-0">03</span><span>Cross-service indexing across Org / Certification / Profile services</span></div>
+                                    <div class="flex gap-x-2.5"><span class="text-emerald-400 font-mono text-xs mt-0.5 w-5 shrink-0">04</span><span>LIKE matching replaced with indexed Full-Text Search — eliminated table scans</span></div>
+                                    <div class="flex gap-x-2.5"><span class="text-emerald-400 font-mono text-xs mt-0.5 w-5 shrink-0">05</span><span>Query restructured to align with the new index strategy</span></div>
+                                </div>
+                            </div>
+                            <div class="bg-emerald-400/8 border border-emerald-400/20 rounded-xl p-4 text-center">
+                                <div class="text-3xl font-bold text-emerald-400">523&times;</div>
+                                <div class="text-xs text-zinc-400 mt-1">Timeouts → milliseconds. Zero API breaking changes.</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="bg-zinc-800 p-8 rounded-3xl card-hover">
-                    <span class="text-purple-400 font-medium">ECOMMERCE • Andrew Gunn @ CPI</span>
-                    <h3 class="text-2xl font-semibold mt-2">Enterprise E-Commerce Platform</h3>
-                    <p class="text-zinc-400 mt-6">Full-stack Optimizely Commerce build with Dynamics 365 CRM integration, PayFabric payments (multi-currency), and real-time capabilities for 300K+ users.</p>
-                    <a href="#" class="text-indigo-400 mt-6 inline-flex items-center gap-x-2 hover:text-indigo-300">Read full case study →</a>
+
+                <!-- Case 2: E-commerce -->
+                <div class="bg-zinc-900 border border-white/10 rounded-2xl overflow-hidden card-hover reveal">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-semibold text-purple-400 bg-purple-400/10 px-3 py-1 rounded-full">E-COMMERCE</span>
+                            <span class="text-xs text-zinc-500">Andrew Gunn &nbsp;&bull;&nbsp; CPI</span>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Enterprise E-Commerce Platform</h3>
+                        <p class="text-zinc-400 text-sm leading-relaxed">Full-stack Optimizely Commerce build with Dynamics 365 CRM, PayFabric payments (multi-currency US/CA), and enterprise identity — serving 300K+ B2B users.</p>
+                        <button class="case-toggle mt-5 text-indigo-400 text-sm flex items-center gap-x-1.5 hover:text-indigo-300 transition-colors font-medium" data-target="case-2">
+                            Read case study <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                        </button>
+                    </div>
+                    <div class="case-detail" id="case-2">
+                        <div class="px-6 pb-6 pt-5 border-t border-white/10 space-y-4">
+                            <div>
+                                <p class="text-xs font-medium text-zinc-500 uppercase tracking-wider mb-2">Platform</p>
+                                <p class="text-sm text-zinc-300 leading-relaxed">.NET 8 / ASP.NET Core / Optimizely CMS & Commerce 14+. Server-side rendering, Tailwind CSS, custom React hooks — optimized for high-traffic B2B e-commerce.</p>
+                            </div>
+                            <div>
+                                <p class="text-xs font-medium text-zinc-500 uppercase tracking-wider mb-2">Integration layer</p>
+                                <div class="space-y-1.5 text-sm text-zinc-300">
+                                    <div class="flex gap-x-2"><span class="text-purple-400 shrink-0">&rarr;</span><span>Dynamics 365 CRM bidirectional customer and order sync</span></div>
+                                    <div class="flex gap-x-2"><span class="text-purple-400 shrink-0">&rarr;</span><span>PingOne + Azure AD SSO and user provisioning</span></div>
+                                    <div class="flex gap-x-2"><span class="text-purple-400 shrink-0">&rarr;</span><span>PayFabric/Cybersource — multi-currency, fraud detection, PCI-compliant</span></div>
+                                    <div class="flex gap-x-2"><span class="text-purple-400 shrink-0">&rarr;</span><span>SendGrid transactional and marketing email automation</span></div>
+                                </div>
+                            </div>
+                            <div class="bg-purple-400/8 border border-purple-400/20 rounded-xl p-4 text-center">
+                                <div class="text-3xl font-bold text-purple-400">300K+</div>
+                                <div class="text-xs text-zinc-400 mt-1">Users across US and Canadian markets.</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Case 3: Orderly ML -->
+                <div class="bg-zinc-900 border border-white/10 rounded-2xl overflow-hidden card-hover reveal">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-semibold text-indigo-400 bg-indigo-400/10 px-3 py-1 rounded-full">AI / ML</span>
+                            <span class="text-xs text-zinc-500">Andrew Gunn &nbsp;&bull;&nbsp; CPI</span>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">ML-Powered Customer Analytics: Orderly</h3>
+                        <p class="text-zinc-400 text-sm leading-relaxed">Built from zero to automated customer intelligence — RFM segmentation, churn prediction, and real-time BI dashboards across 1,250+ B2B accounts.</p>
+                        <button class="case-toggle mt-5 text-indigo-400 text-sm flex items-center gap-x-1.5 hover:text-indigo-300 transition-colors font-medium" data-target="case-3">
+                            Read case study <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                        </button>
+                    </div>
+                    <div class="case-detail" id="case-3">
+                        <div class="px-6 pb-6 pt-5 border-t border-white/10 space-y-4">
+                            <div>
+                                <p class="text-xs font-medium text-zinc-500 uppercase tracking-wider mb-2">Starting point</p>
+                                <p class="text-sm text-zinc-300 leading-relaxed">Zero analytics infrastructure. Customer intelligence lived entirely in salespeople's heads. 1,250+ accounts with no visibility into churn risk or expansion potential.</p>
+                            </div>
+                            <div>
+                                <p class="text-xs font-medium text-zinc-500 uppercase tracking-wider mb-2">What was built</p>
+                                <div class="space-y-1.5 text-sm text-zinc-300">
+                                    <div class="flex gap-x-2"><span class="text-indigo-400 shrink-0">&rarr;</span><span>RFM scoring engine — Recency, Frequency, Monetary analysis on all accounts</span></div>
+                                    <div class="flex gap-x-2"><span class="text-indigo-400 shrink-0">&rarr;</span><span>ML churn prediction from behavioral patterns before humans would catch them</span></div>
+                                    <div class="flex gap-x-2"><span class="text-indigo-400 shrink-0">&rarr;</span><span>Real-time Chart.js dashboards built for sales, not engineers</span></div>
+                                    <div class="flex gap-x-2"><span class="text-indigo-400 shrink-0">&rarr;</span><span>Data pipeline from Dynamics 365 CRM with bulk processing and error recovery</span></div>
+                                </div>
+                            </div>
+                            <div class="bg-indigo-400/8 border border-indigo-400/20 rounded-xl p-4 text-center">
+                                <div class="text-3xl font-bold text-indigo-400">1,250+</div>
+                                <div class="text-xs text-zinc-400 mt-1">B2B accounts with automated risk identification.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case 4: Real-time infra -->
+                <div class="bg-zinc-900 border border-white/10 rounded-2xl overflow-hidden card-hover reveal">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-semibold text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full">INFRASTRUCTURE</span>
+                            <span class="text-xs text-zinc-500">Tim Griffin &nbsp;&bull;&nbsp; CPI</span>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Real-Time Platform Infrastructure</h3>
+                        <p class="text-zinc-400 text-sm leading-relaxed">Platform-wide SignalR + Redis infrastructure serving 14 microservices — shared NuGet packages, typed React hooks on <code class="text-amber-300/90">useSyncExternalStore</code>, exactly-once delivery.</p>
+                        <button class="case-toggle mt-5 text-indigo-400 text-sm flex items-center gap-x-1.5 hover:text-indigo-300 transition-colors font-medium" data-target="case-4">
+                            Read case study <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                        </button>
+                    </div>
+                    <div class="case-detail" id="case-4">
+                        <div class="px-6 pb-6 pt-5 border-t border-white/10 space-y-4">
+                            <div>
+                                <p class="text-xs font-medium text-zinc-500 uppercase tracking-wider mb-2">The goal</p>
+                                <p class="text-sm text-zinc-300 leading-relaxed">Not just one real-time feature — a platform capability the entire engineering team could safely extend without understanding SignalR internals or Redis coordination.</p>
+                            </div>
+                            <div>
+                                <p class="text-xs font-medium text-zinc-500 uppercase tracking-wider mb-2">Architecture</p>
+                                <div class="space-y-1.5 text-sm text-zinc-300">
+                                    <div class="flex gap-x-2"><span class="text-amber-400 shrink-0">&rarr;</span><span>Shared .NET NuGet package encapsulating SignalR hub and connection management</span></div>
+                                    <div class="flex gap-x-2"><span class="text-amber-400 shrink-0">&rarr;</span><span>React/TypeScript consumer on <code class="text-amber-300/90 bg-zinc-800 px-1 rounded">useSyncExternalStore</code> — declarative hook-based API</span></div>
+                                    <div class="flex gap-x-2"><span class="text-amber-400 shrink-0">&rarr;</span><span>Redis atomic ops for distributed exactly-once completion</span></div>
+                                    <div class="flex gap-x-2"><span class="text-amber-400 shrink-0">&rarr;</span><span>3 documented extension patterns so engineers can ship real-time without touching core</span></div>
+                                </div>
+                            </div>
+                            <div class="bg-amber-400/8 border border-amber-400/20 rounded-xl p-4 text-center">
+                                <div class="text-3xl font-bold text-amber-400">14</div>
+                                <div class="text-xs text-zinc-400 mt-1">Microservices built on the shared real-time layer.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case 5: WCF — spans 2 columns on lg -->
+                <div class="bg-zinc-900 border border-white/10 rounded-2xl overflow-hidden card-hover reveal lg:col-span-2">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-semibold text-rose-400 bg-rose-400/10 px-3 py-1 rounded-full">MODERNIZATION</span>
+                            <span class="text-xs text-zinc-500">Tim Griffin &nbsp;&bull;&nbsp; Paysafe</span>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">WCF &rarr; Minimal APIs: Zero-Downtime Migration</h3>
+                        <p class="text-zinc-400 text-sm leading-relaxed">First WCF → Minimal APIs implementation at a global payments company, using YARP strangler fig — no downtime, no API breaking changes. Simultaneously migrated Azure → AWS EKS and Azure DevOps → GitLab CI/CD.</p>
+                        <button class="case-toggle mt-5 text-indigo-400 text-sm flex items-center gap-x-1.5 hover:text-indigo-300 transition-colors font-medium" data-target="case-5">
+                            Read case study <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                        </button>
+                    </div>
+                    <div class="case-detail" id="case-5">
+                        <div class="px-6 pb-6 pt-5 border-t border-white/10">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="space-y-4">
+                                    <div>
+                                        <p class="text-xs font-medium text-zinc-500 uppercase tracking-wider mb-2">Migration approach</p>
+                                        <div class="space-y-1.5 text-sm text-zinc-300">
+                                            <div class="flex gap-x-2"><span class="text-rose-400 shrink-0">&rarr;</span><span>YARP reverse proxy as incremental routing layer between legacy and new services</span></div>
+                                            <div class="flex gap-x-2"><span class="text-rose-400 shrink-0">&rarr;</span><span>Strangler fig: one endpoint at a time — validate in production, roll back if needed</span></div>
+                                            <div class="flex gap-x-2"><span class="text-rose-400 shrink-0">&rarr;</span><span>First implementation at the company — no internal playbook, designed from scratch</span></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs font-medium text-zinc-500 uppercase tracking-wider mb-2">Also delivered simultaneously</p>
+                                        <div class="space-y-1.5 text-sm text-zinc-300">
+                                            <div class="flex gap-x-2"><span class="text-rose-400 shrink-0">&rarr;</span><span>Azure App Services → Dockerized AWS EKS</span></div>
+                                            <div class="flex gap-x-2"><span class="text-rose-400 shrink-0">&rarr;</span><span>Azure DevOps → GitLab CI/CD + trunk-based development</span></div>
+                                            <div class="flex gap-x-2"><span class="text-rose-400 shrink-0">&rarr;</span><span>Shared NuGet Refit client libs with <code class="text-rose-300/90 bg-zinc-800 px-1 rounded">IServiceCollection</code> extensions</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="space-y-4">
+                                    <div class="bg-rose-400/8 border border-rose-400/20 rounded-xl p-5 text-center">
+                                        <div class="text-2xl font-bold text-rose-400">Zero downtime</div>
+                                        <div class="text-xs text-zinc-400 mt-1.5">On a payments platform where downtime means lost revenue and regulatory risk.</div>
+                                    </div>
+                                    <p class="text-xs text-zinc-500 leading-relaxed">WCF modernization is one of the most common pain points in the .NET ecosystem. This YARP-based strangler fig playbook is directly applicable to any organization still running legacy WCF services.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Team -->
-    <section id="team" class="py-24">
+    <div class="section-divider"></div>
+
+    <!-- ===== TECH STACK ===== -->
+    <section id="stack" class="py-24">
         <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl font-semibold mb-12 text-center">The Team</h2>
-            <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-                <div>
-                    <div class="text-6xl mb-6">AG</div>
-                    <h3 class="text-3xl font-semibold">Andrew Gunn</h3>
-                    <p class="text-zinc-400">Full-Stack Architect & Applied AI Engineer • 10+ years • Independent consultant (7 years)</p>
-                    <p class="mt-6 text-zinc-300">Built ML churn prediction platforms, AI data pipelines, Optimizely e-commerce, and enterprise integrations. Strong in product development and client delivery.</p>
+            <div class="text-center mb-16 reveal">
+                <p class="text-indigo-400 font-medium text-xs uppercase tracking-widest mb-4">Our Stack</p>
+                <h2 class="text-4xl md:text-5xl font-semibold tracking-tight">Enterprise-grade depth.<br class="hidden md:block"> Across the full stack.</h2>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 reveal">
+                <div class="bg-zinc-900 border border-white/10 rounded-2xl p-5">
+                    <div class="flex items-center gap-x-3 mb-4">
+                        <div class="w-8 h-8 rounded-lg bg-indigo-500/15 flex items-center justify-center"><i class="fa-solid fa-code text-indigo-400 text-sm"></i></div>
+                        <h3 class="font-semibold text-sm">Languages</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">C#</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">TypeScript</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">JavaScript</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">SQL</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Python</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">PHP</span>
+                    </div>
                 </div>
-                <div>
-                    <div class="text-6xl mb-6">TG</div>
-                    <h3 class="text-3xl font-semibold">Tim Griffin</h3>
-                    <p class="text-zinc-400">Distributed Systems Engineer & Tech Lead • Real-time infrastructure & performance</p>
-                    <p class="mt-6 text-zinc-300">Specializes in event sourcing, CQRS, cloud migrations, and platform-wide real-time systems. Delivered 523× performance wins in production.</p>
+
+                <div class="bg-zinc-900 border border-white/10 rounded-2xl p-5">
+                    <div class="flex items-center gap-x-3 mb-4">
+                        <div class="w-8 h-8 rounded-lg bg-purple-500/15 flex items-center justify-center"><i class="fa-solid fa-server text-purple-400 text-sm"></i></div>
+                        <h3 class="font-semibold text-sm">Backend</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">.NET 8/9</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">ASP.NET Core</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Minimal APIs</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">EF Core</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">SignalR</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">MassTransit</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">NServiceBus</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">MediatR</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">YARP</span>
+                    </div>
+                </div>
+
+                <div class="bg-zinc-900 border border-white/10 rounded-2xl p-5">
+                    <div class="flex items-center gap-x-3 mb-4">
+                        <div class="w-8 h-8 rounded-lg bg-emerald-500/15 flex items-center justify-center"><i class="fa-brands fa-react text-emerald-400 text-sm"></i></div>
+                        <h3 class="font-semibold text-sm">Frontend</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">React 18</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Next.js</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Redux / RTK</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Vue.js</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Tailwind CSS</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Ionic</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Node.js</span>
+                    </div>
+                </div>
+
+                <div class="bg-zinc-900 border border-white/10 rounded-2xl p-5">
+                    <div class="flex items-center gap-x-3 mb-4">
+                        <div class="w-8 h-8 rounded-lg bg-amber-500/15 flex items-center justify-center"><i class="fa-solid fa-cloud text-amber-400 text-sm"></i></div>
+                        <h3 class="font-semibold text-sm">Cloud &amp; DevOps</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Azure</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">AWS EKS</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Docker</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Kubernetes</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">GitHub Actions</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">GitLab CI/CD</span>
+                    </div>
+                </div>
+
+                <div class="bg-zinc-900 border border-white/10 rounded-2xl p-5">
+                    <div class="flex items-center gap-x-3 mb-4">
+                        <div class="w-8 h-8 rounded-lg bg-rose-500/15 flex items-center justify-center"><i class="fa-solid fa-robot text-rose-400 text-sm"></i></div>
+                        <h3 class="font-semibold text-sm">AI / ML</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">OpenAI API</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Anthropic / Claude</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Agentic Workflows</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">RFM Segmentation</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Churn Prediction</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">AI ETL Pipelines</span>
+                    </div>
+                </div>
+
+                <div class="bg-zinc-900 border border-white/10 rounded-2xl p-5">
+                    <div class="flex items-center gap-x-3 mb-4">
+                        <div class="w-8 h-8 rounded-lg bg-sky-500/15 flex items-center justify-center"><i class="fa-solid fa-database text-sky-400 text-sm"></i></div>
+                        <h3 class="font-semibold text-sm">Data</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">SQL Server</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">PostgreSQL</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">MongoDB</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Redis</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">RabbitMQ</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Azure Service Bus</span>
+                    </div>
+                </div>
+
+                <div class="bg-zinc-900 border border-white/10 rounded-2xl p-5">
+                    <div class="flex items-center gap-x-3 mb-4">
+                        <div class="w-8 h-8 rounded-lg bg-teal-500/15 flex items-center justify-center"><i class="fa-solid fa-sitemap text-teal-400 text-sm"></i></div>
+                        <h3 class="font-semibold text-sm">Architecture</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Microservices</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Event-Driven</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">CQRS</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">DDD</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Event Sourcing</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Vertical Slice</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">BFF Pattern</span>
+                    </div>
+                </div>
+
+                <div class="bg-zinc-900 border border-white/10 rounded-2xl p-5">
+                    <div class="flex items-center gap-x-3 mb-4">
+                        <div class="w-8 h-8 rounded-lg bg-orange-500/15 flex items-center justify-center"><i class="fa-solid fa-shop text-orange-400 text-sm"></i></div>
+                        <h3 class="font-semibold text-sm">Commerce &amp; Integrations</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Optimizely Commerce</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">WordPress</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Dynamics 365</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Salesforce</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">Ping Identity</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">SendGrid</span>
+                        <span class="tech-badge text-xs px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300">PayFabric</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact -->
-    <section id="contact" class="py-24 bg-zinc-900">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-5xl font-semibold mb-6">Ready to build something extraordinary?</h2>
-            <p class="text-xl text-zinc-400 mb-10">Let's discuss how a small, senior, AI-native team can accelerate your next project.</p>
-            <a href="mailto:andrewgunn31@gmail.com" class="inline-flex px-10 py-5 bg-white text-zinc-950 rounded-3xl text-xl font-semibold items-center gap-x-3 hover:scale-105 transition">Send us a message →</a>
+    <div class="section-divider"></div>
+
+    <!-- ===== TEAM ===== -->
+    <section id="team" class="py-24 bg-zinc-900/40">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <p class="text-indigo-400 font-medium text-xs uppercase tracking-widest mb-4">The Team</p>
+                <h2 class="text-4xl md:text-5xl font-semibold tracking-tight">Two engineers.<br class="hidden md:block"> One shared codebase.</h2>
+                <p class="mt-5 text-zinc-400 max-w-xl mx-auto">We worked together at CPI before starting Griffin &amp; Gunn. We've shipped together in production — we know how the other thinks.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <!-- Andrew -->
+                <div class="bg-zinc-900 border border-white/10 rounded-2xl p-8 card-hover reveal">
+                    <div class="flex items-start gap-x-5 mb-6">
+                        <div class="monogram w-16 h-16 rounded-2xl text-2xl text-white flex-shrink-0">AG</div>
+                        <div>
+                            <h3 class="text-2xl font-semibold">Andrew Gunn</h3>
+                            <p class="text-indigo-300 text-sm font-medium mt-0.5">Full-Stack Architect &middot; Applied AI Engineer</p>
+                            <div class="flex items-center gap-x-3 mt-3">
+                                <a href="https://github.com/amg262" target="_blank" rel="noopener" class="text-zinc-400 hover:text-white transition-colors" aria-label="GitHub"><i class="fa-brands fa-github text-lg"></i></a>
+                                <a href="https://www.linkedin.com/in/andrewmgunn" target="_blank" rel="noopener" class="text-zinc-400 hover:text-blue-400 transition-colors" aria-label="LinkedIn"><i class="fa-brands fa-linkedin text-lg"></i></a>
+                                <a href="mailto:andrewgunn31@gmail.com" class="text-zinc-400 hover:text-indigo-400 transition-colors" aria-label="Email"><i class="fa-solid fa-envelope text-lg"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-zinc-300 text-sm leading-relaxed mb-6">10+ years building full-stack enterprise systems. 7 years running an independent consulting practice. Built e-commerce platforms grossing $1M+/year, ML analytics predicting churn across 1,250+ B2B accounts, and AI-powered data pipelines in production .NET.</p>
+
+                    <div class="grid grid-cols-3 gap-3 mb-6">
+                        <div class="bg-zinc-800/70 rounded-xl p-3 text-center">
+                            <div class="text-xl font-bold text-indigo-400">10+</div>
+                            <div class="text-xs text-zinc-500 mt-0.5">Years exp.</div>
+                        </div>
+                        <div class="bg-zinc-800/70 rounded-xl p-3 text-center">
+                            <div class="text-xl font-bold text-indigo-400">188</div>
+                            <div class="text-xs text-zinc-500 mt-0.5">GitHub repos</div>
+                        </div>
+                        <div class="bg-zinc-800/70 rounded-xl p-3 text-center">
+                            <div class="text-xl font-bold text-indigo-400">108K+</div>
+                            <div class="text-xs text-zinc-500 mt-0.5">Plugin DLs</div>
+                        </div>
+                    </div>
+
+                    <a href="andrew-gunn.html" class="flex items-center justify-center gap-x-2 w-full px-5 py-3 bg-indigo-600/20 hover:bg-indigo-600/35 border border-indigo-500/30 hover:border-indigo-500/60 rounded-xl text-indigo-300 font-medium text-sm transition-all">
+                        <i class="fa-solid fa-file-lines text-xs"></i> View Full Resume
+                    </a>
+                </div>
+
+                <!-- Tim -->
+                <div class="bg-zinc-900 border border-white/10 rounded-2xl p-8 card-hover reveal">
+                    <div class="flex items-start gap-x-5 mb-6">
+                        <div class="monogram w-16 h-16 rounded-2xl text-2xl text-white flex-shrink-0">TG</div>
+                        <div>
+                            <h3 class="text-2xl font-semibold">Tim Griffin</h3>
+                            <p class="text-purple-300 text-sm font-medium mt-0.5">Distributed Systems Engineer &middot; Tech Lead</p>
+                            <div class="flex items-center gap-x-3 mt-3">
+                                <a href="https://www.linkedin.com/in/tim-griffin-770ab6192" target="_blank" rel="noopener" class="text-zinc-400 hover:text-blue-400 transition-colors" aria-label="LinkedIn"><i class="fa-brands fa-linkedin text-lg"></i></a>
+                                <a href="mailto:tim@timgriffin.dev" class="text-zinc-400 hover:text-purple-400 transition-colors" aria-label="Email"><i class="fa-solid fa-envelope text-lg"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-zinc-300 text-sm leading-relaxed mb-6">6+ years building distributed systems and enterprise .NET at scale. Specializes in event sourcing, CQRS, cloud migrations, and real-time infrastructure. Delivered 523&times; performance gains and the first WCF → Minimal APIs migration at Paysafe.</p>
+
+                    <div class="grid grid-cols-3 gap-3 mb-6">
+                        <div class="bg-zinc-800/70 rounded-xl p-3 text-center">
+                            <div class="text-xl font-bold text-purple-400">6+</div>
+                            <div class="text-xs text-zinc-500 mt-0.5">Years exp.</div>
+                        </div>
+                        <div class="bg-zinc-800/70 rounded-xl p-3 text-center">
+                            <div class="text-xl font-bold text-purple-400">523&times;</div>
+                            <div class="text-xs text-zinc-500 mt-0.5">Best perf. gain</div>
+                        </div>
+                        <div class="bg-zinc-800/70 rounded-xl p-3 text-center">
+                            <div class="text-xl font-bold text-purple-400">14</div>
+                            <div class="text-xs text-zinc-500 mt-0.5">Services shipped</div>
+                        </div>
+                    </div>
+
+                    <a href="tim-griffin.html" class="flex items-center justify-center gap-x-2 w-full px-5 py-3 bg-purple-600/20 hover:bg-purple-600/35 border border-purple-500/30 hover:border-purple-500/60 rounded-xl text-purple-300 font-medium text-sm transition-all">
+                        <i class="fa-solid fa-file-lines text-xs"></i> View Full Resume
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer class="bg-black py-12 text-center text-xs text-zinc-500 border-t border-white/10">
-        © 2026 Griffin & Gunn • Andrew Gunn & Tim Griffin • Built with AI-augmented engineering
+    <div class="section-divider"></div>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" class="py-28">
+        <div class="max-w-4xl mx-auto px-6 text-center reveal">
+            <p class="text-indigo-400 font-medium text-xs uppercase tracking-widest mb-4">Get in Touch</p>
+            <h2 class="hero-font text-5xl md:text-6xl tracking-tight mb-6">Ready to build something extraordinary?</h2>
+            <p class="text-xl text-zinc-400 mb-14 max-w-2xl mx-auto leading-relaxed">Let's talk about how a small, senior, AI-native team can accelerate your next project. We respond quickly and we'll tell you honestly whether we're the right fit.</p>
+
+            <div class="grid sm:grid-cols-2 gap-4 max-w-lg mx-auto mb-12">
+                <a href="mailto:andrewgunn31@gmail.com" class="flex flex-col items-center gap-y-2 bg-zinc-900 border border-white/10 hover:border-indigo-500/40 rounded-2xl p-6 transition-all hover:bg-zinc-800/80 group">
+                    <div class="w-10 h-10 rounded-full bg-indigo-500/15 flex items-center justify-center mb-1 group-hover:bg-indigo-500/25 transition-colors">
+                        <i class="fa-solid fa-envelope text-indigo-400"></i>
+                    </div>
+                    <span class="font-semibold text-white">Andrew Gunn</span>
+                    <span class="text-zinc-400 text-sm">andrewgunn31@gmail.com</span>
+                </a>
+                <a href="mailto:tim@timgriffin.dev" class="flex flex-col items-center gap-y-2 bg-zinc-900 border border-white/10 hover:border-purple-500/40 rounded-2xl p-6 transition-all hover:bg-zinc-800/80 group">
+                    <div class="w-10 h-10 rounded-full bg-purple-500/15 flex items-center justify-center mb-1 group-hover:bg-purple-500/25 transition-colors">
+                        <i class="fa-solid fa-envelope text-purple-400"></i>
+                    </div>
+                    <span class="font-semibold text-white">Tim Griffin</span>
+                    <span class="text-zinc-400 text-sm">tim@timgriffin.dev</span>
+                </a>
+            </div>
+
+            <a href="mailto:andrewgunn31@gmail.com" class="inline-flex px-9 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full text-lg font-semibold items-center gap-x-3 hover:scale-105 hover:shadow-2xl hover:shadow-indigo-500/30 transition-all">
+                Start a conversation <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="bg-black py-10 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-5">
+            <div class="flex items-center gap-x-2.5">
+                <div class="monogram w-6 h-6 rounded text-white text-xs">G</div>
+                <span class="text-zinc-400 text-sm font-medium">Griffin &amp; Gunn</span>
+            </div>
+            <div class="text-zinc-600 text-xs">&copy; 2026 Griffin &amp; Gunn &middot; Andrew Gunn &amp; Tim Griffin &middot; Milwaukee, WI</div>
+            <div class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-zinc-500 text-sm">
+                <a href="andrew-gunn.html" class="text-xs hover:text-zinc-300 transition-colors">Andrew's Resume</a>
+                <a href="tim-griffin.html" class="text-xs hover:text-zinc-300 transition-colors">Tim's Resume</a>
+                <a href="https://github.com/amg262" target="_blank" rel="noopener" class="hover:text-zinc-300 transition-colors" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/andrewmgunn" target="_blank" rel="noopener" class="hover:text-blue-400 transition-colors" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+        </div>
     </footer>
 
     <script>
-        // Tailwind ready
-        console.log('%cGriffin & Gunn site loaded 🚀', 'color: #6366f1; font-weight: 600');
+        // Mobile nav
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+
+        hamburger.addEventListener('click', () => {
+            const isOpen = mobileMenu.classList.toggle('open');
+            hamburgerIcon.className = isOpen ? 'fa-solid fa-xmark text-lg' : 'fa-solid fa-bars text-lg';
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                hamburgerIcon.className = 'fa-solid fa-bars text-lg';
+            });
+        });
+
+        // Case study expand/collapse
+        document.querySelectorAll('.case-toggle').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetId = btn.getAttribute('data-target');
+                const detail = document.getElementById(targetId);
+                const icon = btn.querySelector('i');
+                const isOpen = detail.classList.toggle('open');
+                icon.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+                btn.childNodes.forEach(node => {
+                    if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
+                        node.textContent = isOpen ? 'Hide details ' : 'Read case study ';
+                    }
+                });
+            });
+        });
+
+        // Scroll reveal
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
     </script>
 </body>
 </html>
